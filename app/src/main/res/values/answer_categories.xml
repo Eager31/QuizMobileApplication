@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="answer_categories">
+        <item>Answer A</item>
+        <item>Answer B</item>
+        <item>Answer C</item>
+        <item>Answer D</item>
+    </string-array>
+</resources>

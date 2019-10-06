@@ -1,6 +1,8 @@
 package com.example.quizmobileapplication;
 
-public class Question {
+import java.io.Serializable;
+
+public class Question implements Serializable {
 
     private int questionNumber;
     private String question;

@@ -1,14 +1,18 @@
 package com.example.quizmobileapplication;
 
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Quiz {
+public class Quiz implements Serializable {
 
     private String creatorID;
     private String date;
     private String title;
     private List<Question> questionsLists;
+
+
 
     public String getCreatorID() {
         return creatorID;
@@ -51,4 +55,6 @@ public class Quiz {
         this.title = title;
         this.questionsLists = questionsLists;
     }
+
+
 }

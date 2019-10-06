@@ -2,6 +2,7 @@ package com.example.quizmobileapplication;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,6 +67,17 @@ public class FireBaseDatabaseHelper {
         });
     }
 
+    public void addQuiz(Quiz quiz, final DataStatus dataStatus){
+        String key = mReferenceQuizzes.push().getKey();
+        mReferenceQuizzes.child(key).setValue(quiz).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatus.DataInserted();
+            }
+        });
+
+    }
+
     //Results methods
     public void readResults(final DataStatus dataStatus){
         mReferenceResults.addValueEventListener(new ValueEventListener() {
@@ -85,6 +97,16 @@ public class FireBaseDatabaseHelper {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+    public void addResult(Result result, final DataStatus dataStatus){
+        String key = mReferenceResults.push().getKey();
+        mReferenceResults.child(key).setValue(result).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatus.DataInserted();
             }
         });
     }
@@ -109,6 +131,16 @@ public class FireBaseDatabaseHelper {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+    public void addUser(User user, final DataStatus dataStatus){
+        String key = mReferenceUsers.push().getKey();
+        mReferenceUsers.child(key).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatus.DataInserted();
             }
         });
     }

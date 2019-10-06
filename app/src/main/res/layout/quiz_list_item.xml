@@ -7,18 +7,29 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/author_txtView"
+        android:layout_width="69dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="Author"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/tilte_txtView"
         android:layout_width="110dp"
         android:layout_height="28dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="5dp"
-        android:text="TitleQuizz"
+        android:text="Title"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/datePassed_txtView"
+        android:id="@+id/date_txtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -28,17 +39,19 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilte_txtView" />
+        app:layout_constraintTop_toBottomOf="@+id/author_txtView" />
 
     <TextView
-        android:id="@+id/noteUser_txtView"
+        android:id="@+id/note_txtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:text="Note"
         android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/author_txtView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

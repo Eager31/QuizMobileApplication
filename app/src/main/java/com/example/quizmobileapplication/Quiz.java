@@ -5,24 +5,24 @@ import java.util.List;
 
 public class Quiz {
 
-    private int creatorID;
-    private Date date;
+    private String creatorID;
+    private String date;
     private String title;
     private List<Question> questionsLists;
 
-    public int getCreatorID() {
+    public String getCreatorID() {
         return creatorID;
     }
 
-    public void setCreatorID(int creatorID) {
+    public void setCreatorID(String creatorID) {
         this.creatorID = creatorID;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -45,7 +45,7 @@ public class Quiz {
     public Quiz() {
     }
 
-    public Quiz(int creatorID, Date date, String title, List<Question> questionsLists) {
+    public Quiz(String creatorID, String date, String title, List<Question> questionsLists) {
         this.creatorID = creatorID;
         this.date = date;
         this.title = title;

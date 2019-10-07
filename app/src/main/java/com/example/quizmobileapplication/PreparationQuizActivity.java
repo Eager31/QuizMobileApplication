@@ -43,9 +43,9 @@ public class PreparationQuizActivity extends AppCompatActivity {
         mTitleQuiz_textView = findViewById(R.id.titleQuiz_textView);
         mTitleQuiz_textView.setText(quiz.getTitle());
         mNumber_spinner = findViewById(R.id.number_spinner);
-        mStart_btn = findViewById(R.id.start_btn);
+        mStart_btn = findViewById(R.id.next_btn);
         mBack_btn = findViewById(R.id.back_btn);
-        mStart_btn = findViewById(R.id.start_btn);
+        mStart_btn = findViewById(R.id.next_btn);
         mModify_btn = findViewById(R.id.modify_btn);
         mDelete_btn = findViewById(R.id.delete_btn);
 

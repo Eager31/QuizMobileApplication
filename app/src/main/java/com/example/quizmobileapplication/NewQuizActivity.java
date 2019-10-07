@@ -21,9 +21,9 @@ public class NewQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_quiz);
 
-        quizTitle = (EditText) findViewById(R.id.solutionA_editTxt);
-        nbQuestions = (EditText) findViewById(R.id.nbQuestions_editText);
-        nextBtn = (Button) findViewById(R.id.start_btn);
+        quizTitle = (EditText) findViewById(R.id.title_editTxt);
+        nbQuestions = (EditText) findViewById(R.id.nombQuest_editText);
+        nextBtn = (Button) findViewById(R.id.next_btn);
         cancelBtn = (Button) findViewById(R.id.back_btn);
 
         nextBtn.setOnClickListener(new View.OnClickListener() {

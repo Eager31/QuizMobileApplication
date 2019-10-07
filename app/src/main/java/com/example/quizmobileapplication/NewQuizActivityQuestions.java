@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,11 +17,8 @@ import java.util.List;
 public class NewQuizActivityQuestions extends AppCompatActivity {
 
 
-    private String nbQuestionRemaining;
-    private int intNbQuestionRemaining; //local var to gain some time by casting in int
     private TextView quizTitle_textView; //Title quiz from previous Intent
     private TextView IndicatorQuestionNumber_textView; //Indicate the question number
-    private int actualQuestion;
     private EditText questionTitle_editTxt; //The question itself
     private EditText solutionA_editTxt; //Answer A
     private EditText SolutionB_editTxt;
@@ -33,6 +29,9 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
     private Button nextButton;
     private Quiz actualQuiz;
 
+    private String nbQuestionRemaining;
+    private int intNbQuestionRemaining; //local var to gain some time by casting in int
+    private int actualQuestion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,26 +47,26 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
         intNbQuestionRemaining = Integer.parseInt(nbQuestionRemaining);
 
          //Match and fill
-        quizTitle_textView = findViewById(R.id.quizTitle_textView);
+        quizTitle_textView = findViewById(R.id.quizTitleM_textView);
         quizTitle_textView.setText(actualQuiz.getTitle());
 
-        IndicatorQuestionNumber_textView = findViewById(R.id.explanation_textView);
+        IndicatorQuestionNumber_textView = findViewById(R.id.explanationM_textView);
         if(actualQuiz.getQuestionsLists() == null){ //first question
             actualQuestion = 1;
         }
         String string = "Question n°" + actualQuestion;
         IndicatorQuestionNumber_textView.setText(string);
 
-        questionTitle_editTxt = findViewById(R.id.questionTitle_editTxt);
-        solutionA_editTxt = findViewById(R.id.solutionA_editTxt);
-        SolutionB_editTxt = findViewById(R.id.solutionB_editTxt);
-        SolutionC_editTxt = findViewById(R.id.solutionC_editTxt);
-        SolutionD_editTxt = findViewById(R.id.solutionD_editTxt);
+        questionTitle_editTxt = findViewById(R.id.questionTitleM_editTxt);
+        solutionA_editTxt = findViewById(R.id.title_editTxt);
+        SolutionB_editTxt = findViewById(R.id.solutionBM_editTxt);
+        SolutionC_editTxt = findViewById(R.id.solutionCM_editTxt);
+        SolutionD_editTxt = findViewById(R.id.solutionDM_editTxt);
 
-        rightAnswer = findViewById(R.id.rightAnswer_spinner);
+        rightAnswer = findViewById(R.id.rightAnswerM_spinner);
         cancelButton = findViewById(R.id.back_btn);
-        nextButton = findViewById(R.id.start_btn);
-        intNbQuestionRemaining = intNbQuestionRemaining -1; //Reduce by one the number of execution for the Intent Call
+        nextButton = findViewById(R.id.next_btn);
+        intNbQuestionRemaining = intNbQuestionRemaining -1; //Reduce by one the number of execution
 
         //Generate an empty list for our quiz
         List<Question> listQuestion = new ArrayList <>();
@@ -100,18 +99,7 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
                 }
 
                 actualQuiz.getQuestionsLists().add(question);
-                /*
-                Log.d("QV",String.valueOf(question.getQuestion()));
-                Log.d("QV",String.valueOf(actualQuiz.getQuestionsLists()));
-                Log.d("QV",String.valueOf(actualQuiz.getQuestionsLists().size()));
-                Log.d("QV",String.valueOf(intNbQuestionRemaining));
-                */
-
                 if(intNbQuestionRemaining > 0) { //If it still questions to answer
-                    //Log.d("QV",String.valueOf(actualQuiz.getCreatorID()));
-                    //Log.d("QV",String.valueOf(actualQuiz.getDate()));
-                    //Log.d("QV",String.valueOf(actualQuiz.getTitle()));
-                    //Log.d("QV",String.valueOf(actualQuiz.getQuestionsLists()));
                     reInit();
                 } else { //End creation - Calling back display of the MainActivity
                     //TMP à compléter

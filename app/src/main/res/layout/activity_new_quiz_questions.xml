@@ -7,7 +7,7 @@
     tools:context=".NewQuizActivityQuestions">
 
     <Spinner
-        android:id="@+id/rightAnswer_spinner"
+        android:id="@+id/rightAnswerM_spinner"
         android:layout_width="233dp"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
@@ -15,10 +15,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.657"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/solutionD_editTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/solutionDM_editTxt" />
 
     <EditText
-        android:id="@+id/solutionD_editTxt"
+        android:id="@+id/solutionDM_editTxt"
         android:layout_width="320dp"
         android:layout_height="58dp"
         android:layout_marginTop="8dp"
@@ -28,10 +28,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.329"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/solutionC_editTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/solutionCM_editTxt" />
 
     <EditText
-        android:id="@+id/solutionC_editTxt"
+        android:id="@+id/solutionCM_editTxt"
         android:layout_width="320dp"
         android:layout_height="58dp"
         android:layout_marginTop="12dp"
@@ -41,10 +41,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.329"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/solutionB_editTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/solutionBM_editTxt" />
 
     <EditText
-        android:id="@+id/solutionB_editTxt"
+        android:id="@+id/solutionBM_editTxt"
         android:layout_width="320dp"
         android:layout_height="58dp"
         android:layout_marginTop="8dp"
@@ -54,10 +54,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.329"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/solutionA_editTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/title_editTxt" />
 
     <EditText
-        android:id="@+id/solutionA_editTxt"
+        android:id="@+id/title_editTxt"
         android:layout_width="320dp"
         android:layout_height="58dp"
         android:layout_marginTop="40dp"
@@ -67,10 +67,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.329"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionTitle_editTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/questionTitleM_editTxt" />
 
     <EditText
-        android:id="@+id/questionTitle_editTxt"
+        android:id="@+id/questionTitleM_editTxt"
         android:layout_width="320dp"
         android:layout_height="58dp"
         android:layout_marginTop="36dp"
@@ -80,7 +80,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.329"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/explanation_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/explanationM_textView" />
 
     <Button
         android:id="@+id/back_btn"
@@ -91,13 +91,13 @@
         android:layout_marginBottom="24dp"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/start_btn"
+        app:layout_constraintEnd_toStartOf="@+id/next_btn"
         app:layout_constraintHorizontal_bias="0.675"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rightAnswer_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/rightAnswerM_spinner" />
 
     <Button
-        android:id="@+id/start_btn"
+        android:id="@+id/next_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -106,10 +106,10 @@
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rightAnswer_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/rightAnswerM_spinner" />
 
     <TextView
-        android:id="@+id/explanation_textView"
+        android:id="@+id/explanationM_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -120,19 +120,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/disp_youAnswer_txtView"
+        android:id="@+id/disp_youAnswerM_txtView"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:text="Solution :"
-        app:layout_constraintEnd_toStartOf="@+id/rightAnswer_spinner"
+        app:layout_constraintEnd_toStartOf="@+id/rightAnswerM_spinner"
         app:layout_constraintHorizontal_bias="0.86"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/solutionD_editTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/solutionDM_editTxt" />
 
     <TextView
-        android:id="@+id/quizTitle_textView"
+        android:id="@+id/quizTitleM_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

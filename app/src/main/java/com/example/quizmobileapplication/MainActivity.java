@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        Toast.makeText(MainActivity.this, "Database OK", Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, "Welcome on the App", Toast.LENGTH_LONG).show();
 
         mQuizRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_quizzes);
         new FireBaseDatabaseHelper().readQuizzes(new FireBaseDatabaseHelper.DataStatus() {

@@ -13,7 +13,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class PreparationQuizActivity extends AppCompatActivity {
 
@@ -27,6 +29,7 @@ public class PreparationQuizActivity extends AppCompatActivity {
     private String key;
     private Quiz quiz;
 
+    private ArrayList<Integer> questionsNumber = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +66,42 @@ public class PreparationQuizActivity extends AppCompatActivity {
                 redirectModification();
             }
         });
-
         mDelete_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 confirmDialog();
             }
         });
+        mStart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int numberSelected = (int) Integer.valueOf(mNumber_spinner.getSelectedItem().toString()); //For the moment it's placebo ! IDK how to generate a random number, and vary it by using another one
 
+                //random with the input get to select questions
+                int minValue = 0;
+                int maxValue = quiz.getQuestionsLists().size();
+
+                while (questionsNumber.size() != 5){//5 questions by default in the subject
+                    Random r = new Random();
+                    int value = minValue + r.nextInt(maxValue - minValue);
+                    if(!questionsNumber.contains(value)){
+                        questionsNumber.add(value);
+                    }
+                }
+                redirectDoingQuiz();
+            }
+        });
+
+
+
+    }
+
+    public void redirectDoingQuiz(){
+        Intent intent3 = new Intent(this, DoingQuizActivity.class);
+        intent3.putExtra("key", key);
+        intent3.putExtra("quiz", quiz);
+        intent3.putIntegerArrayListExtra("random", questionsNumber);
+        startActivity(intent3);
     }
 
     public void redirectModification(){

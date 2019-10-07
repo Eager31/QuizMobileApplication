@@ -47,10 +47,10 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
         intNbQuestionRemaining = Integer.parseInt(nbQuestionRemaining);
 
          //Match and fill
-        quizTitle_textView = findViewById(R.id.quizTitleM_textView);
+        quizTitle_textView = findViewById(R.id.quizTitleD_textView);
         quizTitle_textView.setText(actualQuiz.getTitle());
 
-        IndicatorQuestionNumber_textView = findViewById(R.id.explanationM_textView);
+        IndicatorQuestionNumber_textView = findViewById(R.id.explanationD_textView);
         if(actualQuiz.getQuestionsLists() == null){ //first question
             actualQuestion = 1;
         }
@@ -63,7 +63,7 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
         SolutionC_editTxt = findViewById(R.id.solutionCM_editTxt);
         SolutionD_editTxt = findViewById(R.id.solutionDM_editTxt);
 
-        rightAnswer = findViewById(R.id.rightAnswerM_spinner);
+        rightAnswer = findViewById(R.id.rightAnswerD_spinner);
         cancelButton = findViewById(R.id.back_btn);
         nextButton = findViewById(R.id.next_btn);
         intNbQuestionRemaining = intNbQuestionRemaining -1; //Reduce by one the number of execution

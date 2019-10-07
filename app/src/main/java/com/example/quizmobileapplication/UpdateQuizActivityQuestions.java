@@ -41,14 +41,14 @@ public class UpdateQuizActivityQuestions extends AppCompatActivity {
         setContentView(R.layout.activity_update__quiz_questions);
 
         //Link
-        mQuizTitle_textView = findViewById(R.id.quizTitleM_textView);
-        mExplanation_textView = findViewById(R.id.explanationM_textView);
+        mQuizTitle_textView = findViewById(R.id.quizTitleD_textView);
+        mExplanation_textView = findViewById(R.id.explanationD_textView);
         mQuestionTitle_editTxt = findViewById(R.id.questionTitleM_editTxt);
         mSolutionA_editTxt = findViewById(R.id.solutionAM_editTxt);
         mSolutionB_editTxt = findViewById(R.id.solutionBM_editTxt);
         mSolutionC_editTxt =  findViewById(R.id.solutionCM_editTxt);
         mSolutionD_editTxt = findViewById(R.id.solutionDM_editTxt);
-        mRightAnswer_spinner = findViewById(R.id.rightAnswerM_spinner);
+        mRightAnswer_spinner = findViewById(R.id.rightAnswerD_spinner);
         back_btn = findViewById(R.id.back_btn);
         next_btn = findViewById(R.id.next_btn);
 

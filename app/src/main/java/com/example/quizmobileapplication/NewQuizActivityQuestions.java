@@ -100,10 +100,12 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
                 }
 
                 actualQuiz.getQuestionsLists().add(question);
+                /*
                 Log.d("QV",String.valueOf(question.getQuestion()));
                 Log.d("QV",String.valueOf(actualQuiz.getQuestionsLists()));
                 Log.d("QV",String.valueOf(actualQuiz.getQuestionsLists().size()));
                 Log.d("QV",String.valueOf(intNbQuestionRemaining));
+                */
 
                 if(intNbQuestionRemaining > 0) { //If it still questions to answer
                     //Log.d("QV",String.valueOf(actualQuiz.getCreatorID()));

@@ -66,7 +66,6 @@ public class FireBaseDatabaseHelper {
             }
         });
     }
-
     public void addQuiz(Quiz quiz, final DataStatus dataStatus){
         String key = mReferenceQuizzes.push().getKey();
         mReferenceQuizzes.child(key).setValue(quiz).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -75,8 +74,26 @@ public class FireBaseDatabaseHelper {
                 dataStatus.DataInserted();
             }
         });
-
     }
+    public void updateQuiz(String key, Quiz quiz, final DataStatus dataStatus){
+        mReferenceQuizzes.child(key).setValue(quiz)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dataStatus.DataIsUpdated();
+                    }
+                });
+    }
+    public void deleteQuiz(String key, final DataStatus dataStatus){
+        mReferenceQuizzes.child(key).setValue(null)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dataStatus.DataIsDeleted();
+                    }
+                });
+    }
+
 
     //Results methods
     public void readResults(final DataStatus dataStatus){
@@ -100,7 +117,6 @@ public class FireBaseDatabaseHelper {
             }
         });
     }
-
     public void addResult(Result result, final DataStatus dataStatus){
         String key = mReferenceResults.push().getKey();
         mReferenceResults.child(key).setValue(result).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -110,7 +126,24 @@ public class FireBaseDatabaseHelper {
             }
         });
     }
-
+    public void updateResult(String key, Result result, final DataStatus dataStatus){
+        mReferenceResults.child(key).setValue(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dataStatus.DataIsUpdated();
+                    }
+                });
+    }
+    public void deleteResult(String key, final DataStatus dataStatus){
+        mReferenceResults.child(key).setValue(null)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dataStatus.DataIsDeleted();
+                    }
+                });
+    }
 
     //Users methods
     public void readUsers(final DataStatus dataStatus){
@@ -134,7 +167,6 @@ public class FireBaseDatabaseHelper {
             }
         });
     }
-
     public void addUser(User user, final DataStatus dataStatus){
         String key = mReferenceUsers.push().getKey();
         mReferenceUsers.child(key).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -144,9 +176,24 @@ public class FireBaseDatabaseHelper {
             }
         });
     }
-
-
-
+    public void updateUser(String key, User user, final DataStatus dataStatus){
+        mReferenceUsers.child(key).setValue(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dataStatus.DataIsUpdated();
+                    }
+                });
+    }
+    public void deleteUser(String key, final DataStatus dataStatus){
+        mReferenceUsers.child(key).setValue(null)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dataStatus.DataIsDeleted();
+                    }
+                });
+    }
 
 
 }

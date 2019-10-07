@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewQuizActivityQuestions"
-            android:parentActivityName=".NewQuizActivity">
-        </activity>
+        <activity android:name=".UpdateQuizActivityQuestions"></activity>
+        <activity android:name=".UpdateQuizActivity" />
+        <activity android:name=".DoingQuizActivity" />
+        <activity android:name=".PreparationQuizActivity" />
+        <activity
+            android:name=".NewQuizActivityQuestions"
+            android:parentActivityName=".NewQuizActivity" />
         <activity android:name=".NewQuizActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

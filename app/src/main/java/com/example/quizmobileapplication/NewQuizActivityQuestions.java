@@ -1,11 +1,8 @@
 package com.example.quizmobileapplication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,14 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.server.converter.StringToIntConverter;
-
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class NewQuizActivityQuestions extends AppCompatActivity {
 
@@ -60,7 +51,7 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
         quizTitle_textView = findViewById(R.id.quizTitle_textView);
         quizTitle_textView.setText(actualQuiz.getTitle());
 
-        IndicatorQuestionNumber_textView = findViewById(R.id.IndicatorQuestionNumber_textView);
+        IndicatorQuestionNumber_textView = findViewById(R.id.explanation_textView);
         if(actualQuiz.getQuestionsLists() == null){ //first question
             actualQuestion = 1;
         }
@@ -75,7 +66,7 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
 
         rightAnswer = findViewById(R.id.rightAnswer_spinner);
         cancelButton = findViewById(R.id.back_btn);
-        nextButton = findViewById(R.id.next_btn);
+        nextButton = findViewById(R.id.start_btn);
         intNbQuestionRemaining = intNbQuestionRemaining -1; //Reduce by one the number of execution for the Intent Call
 
         //Generate an empty list for our quiz

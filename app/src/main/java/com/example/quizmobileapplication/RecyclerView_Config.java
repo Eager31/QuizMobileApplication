@@ -31,8 +31,8 @@ public class RecyclerView_Config {
         private TextView mTitle;
         private TextView mDate;
         private TextView mNote;
-
         private String key;
+        private Quiz mQuiz; //Quiz to pass in parameters
 
         public QuizItemView(ViewGroup parent) {
 
@@ -44,15 +44,26 @@ public class RecyclerView_Config {
             mAuthor = (TextView) itemView.findViewById(R.id.author_txtView);
             mTitle = (TextView) itemView.findViewById(R.id.tilte_txtView);
             mDate = (TextView) itemView.findViewById(R.id.date_txtView);
-            mNote = (TextView) itemView.findViewById(R.id.note_txtView);
+            mNote = (TextView) itemView.findViewById(R.id.note_txtView); //Only useful for the user
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, PreparationQuizActivity.class);
+                    intent.putExtra("key", key);
+                    intent.putExtra("quiz", mQuiz);
+                    mContext.startActivity(intent);
+                }
+            });
 
         }
 
         //Fill the data inside
         public void Bind(Quiz quiz, String key) {
-            mTitle.setText(quiz.getTitle().toString());
-            mAuthor.setText(quiz.getCreatorID().toString());
-            mDate.setText(quiz.getDate().toString());
+            this.mQuiz = quiz; //Get a local quiz with his attributes
+            mTitle.setText(this.mQuiz.getTitle().toString());
+            mAuthor.setText(this.mQuiz.getCreatorID().toString());
+            mDate.setText(this.mQuiz.getDate().toString());
             //mNote.setText(quiz.getNoteFromUser()); --> To code, get the note from the user
             this.key = key.toString();
         }

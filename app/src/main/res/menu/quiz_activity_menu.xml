@@ -12,9 +12,6 @@
         android:id="@+id/scores"
         android:title="SCORES" />
     <item
-        android:id="@+id/sign_in"
-        android:title="SIGN IN" />
-    <item
         android:id="@+id/sign_out"
-        android:title="SIGN OUT" />
+        android:title="LOGOUT" />
 </menu>

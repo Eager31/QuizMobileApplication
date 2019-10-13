@@ -1,8 +1,10 @@
 package com.example.quizmobileapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,11 +31,12 @@ public class FireBaseDatabaseHelper {
         //Loaded
         void QuizIsLoaded(List<Quiz> quizzes, List<String> keys);
         void ResultIsLoaded(List<Result> results, List<String> keys);
-        void UserIsLoaded(List<User> users, List<String> keys);
+        void UsersIsLoaded(List<User> users, List<String> keys);
         //Others
         void DataInserted();
         void DataIsUpdated();
         void DataIsDeleted();
+        void UserIsLoaded(User user, String key);
     }
 
 
@@ -158,7 +161,7 @@ public class FireBaseDatabaseHelper {
                     User user = keyNode.getValue(User.class);
                     users.add(user);
                 }
-                dataStatus.UserIsLoaded(users, keys);
+                dataStatus.UsersIsLoaded(users, keys);
             }
 
             @Override
@@ -167,6 +170,36 @@ public class FireBaseDatabaseHelper {
             }
         });
     }
+
+    public void getUser(String email, final DataStatus dataStatus) {
+        mReferenceUsers.orderByChild("email").equalTo(email).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                System.out.println(dataSnapshot.getKey());
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     public void addUser(User user, final DataStatus dataStatus){
         String key = mReferenceUsers.push().getKey();
         mReferenceUsers.child(key).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {

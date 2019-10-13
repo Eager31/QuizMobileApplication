@@ -11,15 +11,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.List;
 
 public class RecyclerView_Config {
 
+    FirebaseAuth mAuth;
+
+    private static FirebaseUser user;
     private Context mContext;
     private QuizzesAdapter mQuizAdapter;
 
     public void setConfig(RecyclerView recyclerView, Context context, List<Quiz> quizzes, List<String> keys){
         mContext = context;
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
         mQuizAdapter = new QuizzesAdapter(quizzes, keys);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(mQuizAdapter);
@@ -96,7 +105,9 @@ public class RecyclerView_Config {
         }
     }
 
-
+    public static void logout() {
+        user = null;
+    }
 
 
 

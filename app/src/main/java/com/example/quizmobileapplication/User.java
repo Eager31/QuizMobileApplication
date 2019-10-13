@@ -1,34 +1,19 @@
 package com.example.quizmobileapplication;
 
+import java.util.HashMap;
+
 public class User {
 
-    private String name;
-    private int age;
-    private String address;
+    private String email;
     private Boolean admin;
+    private HashMap<Integer, Integer> marks;
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Boolean getAdmin() {
@@ -39,13 +24,20 @@ public class User {
         this.admin = admin;
     }
 
+    public HashMap<Integer, Integer> getmarks() {
+        return this.marks;
+    }
+
+    public void setMarks(HashMap<Integer, Integer> marks) {
+        this.marks = marks;
+    }
+
     public User() {
     }
 
-    public User(String name, int age, String address, Boolean admin) {
-        this.name = name;
-        this.age = age;
-        this.address = address;
+    public User(String email, Boolean admin, HashMap<Integer, Integer> marks) {
+        this.email = email;
         this.admin = admin;
+        this.marks = marks;
     }
 }

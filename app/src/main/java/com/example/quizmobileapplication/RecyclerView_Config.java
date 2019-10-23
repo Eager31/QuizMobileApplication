@@ -24,12 +24,12 @@ public class RecyclerView_Config {
     private Context mContext;
     private QuizzesAdapter mQuizAdapter;
 
-    public void setConfig(RecyclerView recyclerView, Context context, List<Quiz> quizzes, List<String> keys){
+    public void setConfig(RecyclerView recyclerView, Context context, List<Quiz> quizzes, List<String> keys, User actualUser){
         mContext = context;
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        mQuizAdapter = new QuizzesAdapter(quizzes, keys);
+        mQuizAdapter = new QuizzesAdapter(quizzes, keys, actualUser);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(mQuizAdapter);
     }
@@ -42,6 +42,7 @@ public class RecyclerView_Config {
         private TextView mNote;
         private String key;
         private Quiz mQuiz; //Quiz to pass in parameters
+        private User actualUser;
 
         public QuizItemView(ViewGroup parent) {
 
@@ -61,6 +62,7 @@ public class RecyclerView_Config {
                     Intent intent = new Intent(mContext, PreparationQuizActivity.class);
                     intent.putExtra("key", key);
                     intent.putExtra("quiz", mQuiz);
+                    intent.putExtra("user", actualUser);
                     mContext.startActivity(intent);
                 }
             });
@@ -68,7 +70,8 @@ public class RecyclerView_Config {
         }
 
         //Fill the data inside
-        public void Bind(Quiz quiz, String key) {
+        public void Bind(Quiz quiz, String key, User user) {
+            this.actualUser = user;
             this.mQuiz = quiz; //Get a local quiz with his attributes
             mTitle.setText(this.mQuiz.getTitle().toString());
             mAuthor.setText(this.mQuiz.getCreatorID().toString());
@@ -82,10 +85,12 @@ public class RecyclerView_Config {
     class QuizzesAdapter extends RecyclerView.Adapter<QuizItemView>{
         private List<Quiz> mQuizzesList;
         private List<String> mKeys;
+        private User actualUser;
 
-        public QuizzesAdapter(List<Quiz> mQuizzesList, List<String> mKeys) {
+        public QuizzesAdapter(List<Quiz> mQuizzesList, List<String> mKeys, User actualUser) {
             this.mQuizzesList = mQuizzesList;
             this.mKeys = mKeys;
+            this.actualUser = actualUser;
         }
 
         @NonNull
@@ -96,7 +101,7 @@ public class RecyclerView_Config {
 
         @Override
         public void onBindViewHolder(@NonNull QuizItemView holder, int position) {
-            holder.Bind(mQuizzesList.get(position), mKeys.get(position));
+            holder.Bind(mQuizzesList.get(position), mKeys.get(position), actualUser);
         }
 
         @Override

@@ -11,8 +11,15 @@ public class Quiz implements Serializable {
     private String date;
     private String title;
     private List<Question> questionsLists;
+    private List<Score> scoreList;
 
+    public List<Score> getScoresList() {
+        return scoreList;
+    }
 
+    public void setScoresList(List<Score> scoresList) {
+        this.scoreList = scoresList;
+    }
 
     public String getCreatorID() {
         return creatorID;

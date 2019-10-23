@@ -7,7 +7,8 @@
         android:title="NEW QUIZ" />
     <item
         android:id="@+id/manage_users"
-        android:title="MANAGE USERS" />
+        android:title="MANAGE USERS"
+        android:visible="true" />
     <item
         android:id="@+id/scores"
         android:title="SCORES" />

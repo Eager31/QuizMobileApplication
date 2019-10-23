@@ -1,0 +1,64 @@
+{
+  "project_info": {
+    "project_number": "515790031061",
+    "firebase_url": "https://quizmobileapplication.firebaseio.com",
+    "project_id": "quizmobileapplication",
+    "storage_bucket": "quizmobileapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515790031061:android:74c18a1a8907e419b2fa5c",
+        "android_client_info": {
+          "package_name": "com.example.quizmobileapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515790031061-vvh4njvojphdtcemvd4n6q8r579652m8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quizmobileapplication",
+            "certificate_hash": "ed5d0420bfc5e673be728a2dee6a181a834982f7"
+          }
+        },
+        {
+          "client_id": "515790031061-mauvh46r57c2jafm0p74mk35nvtvrol6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quizmobileapplication",
+            "certificate_hash": "fe4008028dab010d9e1235757760b3076060b2f1"
+          }
+        },
+        {
+          "client_id": "515790031061-krs4cmr5j3tskp7f6d60r0sqgghu3tvd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quizmobileapplication",
+            "certificate_hash": "c6d651189038ff5d26aa11aeca7dcf06c4ea4ef3"
+          }
+        },
+        {
+          "client_id": "515790031061-ek8l8eddo1gnevls5nk4e2inev6gi7uv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3bPrXFdiZ5sow3gtQH0yMUG5tPv7pnb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515790031061-ek8l8eddo1gnevls5nk4e2inev6gi7uv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

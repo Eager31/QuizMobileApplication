@@ -10,7 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".UserListActivity">
+        </activity>
+        <activity android:name=".scoreListActivity"/>
         <activity android:name=".UpdateQuizActivityQuestions" />
+        <activity android:name=".ResultListPerQuizz"/>
         <activity android:name=".UpdateQuizActivity" />
         <activity android:name=".DoingQuizActivity" />
         <activity android:name=".PreparationQuizActivity" />

@@ -1,5 +1,7 @@
 package com.example.quizmobileapplication;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -27,6 +29,9 @@ public class FireBaseDatabaseHelper {
     private List<Result> results = new ArrayList<>();
     private List<User> users = new ArrayList<>();
 
+    // User object
+    private Object actualUser = null;
+
     public interface DataStatus{
         //Loaded
         void QuizIsLoaded(List<Quiz> quizzes, List<String> keys);
@@ -36,7 +41,6 @@ public class FireBaseDatabaseHelper {
         void DataInserted();
         void DataIsUpdated();
         void DataIsDeleted();
-        void UserIsLoaded(User user, String key);
     }
 
 
@@ -109,6 +113,7 @@ public class FireBaseDatabaseHelper {
                     keys.add(keyNode.getKey());
                     //insert book into
                     Result result = keyNode.getValue(Result.class);
+                    result.setKey(keyNode.getKey());
                     results.add(result);
                 }
                 dataStatus.ResultIsLoaded(results, keys);
@@ -125,6 +130,7 @@ public class FireBaseDatabaseHelper {
         mReferenceResults.child(key).setValue(result).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+                Log.d("quentin", "je passe dedans");
                 dataStatus.DataInserted();
             }
         });
@@ -157,40 +163,11 @@ public class FireBaseDatabaseHelper {
                 List<String> keys = new ArrayList<>();
                 for (DataSnapshot keyNode : dataSnapshot.getChildren()){
                     keys.add(keyNode.getKey());
-                    //insert book into
                     User user = keyNode.getValue(User.class);
+                    user.setKey(keyNode.getKey());
                     users.add(user);
                 }
                 dataStatus.UsersIsLoaded(users, keys);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    public void getUser(String email, final DataStatus dataStatus) {
-        mReferenceUsers.orderByChild("email").equalTo(email).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                System.out.println(dataSnapshot.getKey());
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
             }
 
             @Override

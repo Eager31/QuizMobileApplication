@@ -11,7 +11,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class NewQuizActivityQuestions extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
     private Button cancelButton;
     private Button nextButton;
     private Quiz actualQuiz;
+    private User user;
 
     private String nbQuestionRemaining;
     private int intNbQuestionRemaining; //local var to gain some time by casting in int
@@ -42,7 +45,7 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
         //Get the previous data
         //Get the actual state from the Quiz
         actualQuiz = (Quiz) intent.getSerializableExtra("Quiz");
-
+        user = (User) intent.getSerializableExtra("actualUser");
         nbQuestionRemaining = intent.getStringExtra("NbQuestionRemaining");
         intNbQuestionRemaining = Integer.parseInt(nbQuestionRemaining);
 
@@ -103,8 +106,10 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
                     reInit();
                 } else { //End creation - Calling back display of the MainActivity
                     //TMP à compléter
-                    actualQuiz.setCreatorID("Emilien");
-                    actualQuiz.setDate("10/10/2019");
+                    Date date = new Date();
+                    String dateWithFormat = new SimpleDateFormat("yyyy-MM-dd").format(date);
+                    actualQuiz.setCreatorID(user.getEmail());
+                    actualQuiz.setDate(dateWithFormat);
                     sendAndStop();
                 }
             }
@@ -148,7 +153,7 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
             }
 
             @Override
-            public void UserIsLoaded(List<User> users, List<String> keys) {
+            public void UsersIsLoaded(List<User> users, List<String> keys) {
 
             }
 
@@ -158,7 +163,6 @@ public class NewQuizActivityQuestions extends AppCompatActivity {
                         "been inserted successfully", Toast.LENGTH_LONG).show();
                 finish();
                 return;
-
             }
 
             @Override

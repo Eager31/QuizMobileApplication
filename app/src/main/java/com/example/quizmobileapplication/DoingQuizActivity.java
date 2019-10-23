@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DoingQuizActivity extends AppCompatActivity {
 
@@ -32,6 +34,11 @@ public class DoingQuizActivity extends AppCompatActivity {
     private Quiz quiz;
     private ArrayList<Integer> randomNumbers;
     private Question question;
+    private Result resultQuizz = null;
+    private User user;
+    Boolean isNewResult = false;
+    Boolean isNewScore = true;
+    List<Score> NewScoreList = new ArrayList <>();
 
     private int pointsNumber;
     private int intNbQuestion;
@@ -58,6 +65,7 @@ public class DoingQuizActivity extends AppCompatActivity {
         key = intent.getStringExtra("key"); //ID from dataBase
         quiz = (Quiz) intent.getSerializableExtra("quiz"); //Get the data from the Quiz
         randomNumbers = intent.getIntegerArrayListExtra("random"); //Get the question numbers
+        user = (User) intent.getSerializableExtra("user");
 
         //Default for first question
         mQuizTitleD_textView.setText(quiz.getTitle());
@@ -104,14 +112,165 @@ public class DoingQuizActivity extends AppCompatActivity {
         mSolutionDD_txtView.setText(question.getOption4());
     }
 
+    public void updateResult() {
+        for (Score score : resultQuizz.getScoreList()) {
+            if (score.getUser().equals(user.getEmail()) && score.getScore() < pointsNumber) {
+                score.setScore(pointsNumber);
+                isNewScore = false;
+                if (isNewResult) {
+                    isNewResult = false;
+                    new FireBaseDatabaseHelper().addResult(resultQuizz, new FireBaseDatabaseHelper.DataStatus() {
+                        @Override
+                        public void QuizIsLoaded(List<Quiz> quizzes, List<String> keys) {
+
+                        }
+
+                        @Override
+                        public void ResultIsLoaded(List<Result> results, List<String> keys) {
+
+                        }
+
+                        @Override
+                        public void UsersIsLoaded(List<User> users, List<String> keys) {
+
+                        }
+
+                        @Override
+                        public void DataInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+                        }
+                    });
+                } else {
+                    new FireBaseDatabaseHelper().updateResult(resultQuizz.getKey(), resultQuizz, new FireBaseDatabaseHelper.DataStatus() {
+                        @Override
+                        public void QuizIsLoaded(List<Quiz> quizzes, List<String> keys) {
+
+                        }
+
+                        @Override
+                        public void ResultIsLoaded(List<Result> results, List<String> keys) {
+
+                        }
+
+                        @Override
+                        public void UsersIsLoaded(List<User> users, List<String> keys) {
+
+                        }
+
+                        @Override
+                        public void DataInserted() {
+
+                        }
+
+                        @Override
+                        public void DataIsUpdated() {
+                        }
+
+                        @Override
+                        public void DataIsDeleted() {
+
+                        }
+                    });
+                }
+            }
+        }
+        if (isNewScore) {
+            isNewScore = false;
+            List<Score> scoreListTmp = resultQuizz.getScoreList();
+            Score newScoreInResult = new Score(user.getEmail(), pointsNumber);
+            scoreListTmp.add(newScoreInResult);
+            resultQuizz.setScoreList(scoreListTmp);
+            new FireBaseDatabaseHelper().updateResult(resultQuizz.getKey(), resultQuizz, new FireBaseDatabaseHelper.DataStatus() {
+                @Override
+                public void QuizIsLoaded(List<Quiz> quizzes, List<String> keys) {
+
+                }
+
+                @Override
+                public void ResultIsLoaded(List<Result> results, List<String> keys) {
+
+                }
+
+                @Override
+                public void UsersIsLoaded(List<User> users, List<String> keys) {
+
+                }
+
+                @Override
+                public void DataInserted() {
+
+                }
+
+                @Override
+                public void DataIsUpdated() {
+                }
+
+                @Override
+                public void DataIsDeleted() {
+
+                }
+            });
+        }
+        Toast.makeText(this, "Your score is: " + pointsNumber, Toast.LENGTH_LONG).show();
+        finish();
+    }
+
     public void sendAndStop(){
         //send the score
         //ToComplete
         //pointsNumber /5
-        Toast.makeText(this, "Your score is: " + pointsNumber, Toast.LENGTH_LONG).show();
-        finish();
-        return;
+        new FireBaseDatabaseHelper().readResults(new FireBaseDatabaseHelper.DataStatus() {
+            @Override
+            public void QuizIsLoaded(List<Quiz> quizzes, List<String> keys) {
+
+            }
+
+            @Override
+            public void ResultIsLoaded(List<Result> results, List<String> keys) {
+                for (Result result : results) {
+                    if (result.getQuizzKey().equals(key)) {
+                        resultQuizz = result;
+                    }
+                }
+                if (resultQuizz == null) {
+                    NewScoreList.clear();
+                    Score newScore = new Score(user.getEmail(), 0);
+                    NewScoreList.add(newScore);
+                    resultQuizz = new Result(key, quiz.getTitle(), NewScoreList);
+                    isNewResult = true;
+                }
+                updateResult();
+            }
+
+            @Override
+            public void UsersIsLoaded(List<User> users, List<String> keys) {
+
+            }
+
+            @Override
+            public void DataInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
     }
-
-
 }

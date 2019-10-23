@@ -28,6 +28,7 @@ public class PreparationQuizActivity extends AppCompatActivity {
 
     private String key;
     private Quiz quiz;
+    private User user;
 
     private ArrayList<Integer> questionsNumber = new ArrayList<>();
 
@@ -39,8 +40,9 @@ public class PreparationQuizActivity extends AppCompatActivity {
 
         key = intent.getStringExtra("key"); //ID from dataBase
         quiz = (Quiz) intent.getSerializableExtra("quiz"); //Get the data from the Quiz
+        user = (User) intent.getSerializableExtra("user");
 
-        Log.i("KEY", key);
+        Log.d("quentin", key);
 
         //Matching
         mTitleQuiz_textView = findViewById(R.id.titleQuiz_textView);
@@ -59,7 +61,10 @@ public class PreparationQuizActivity extends AppCompatActivity {
                 return;
             }
         });
-
+        if (!user.getAdmin()) {
+            mDelete_btn.setVisibility(View.INVISIBLE);
+            mModify_btn.setVisibility(View.INVISIBLE);
+        }
         mModify_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,12 +81,10 @@ public class PreparationQuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int numberSelected = (int) Integer.valueOf(mNumber_spinner.getSelectedItem().toString()); //For the moment it's placebo ! IDK how to generate a random number, and vary it by using another one
-
                 //random with the input get to select questions
                 int minValue = 0;
                 int maxValue = quiz.getQuestionsLists().size();
-
-                while (questionsNumber.size() != 5){//5 questions by default in the subject
+                while (questionsNumber.size() != 5){ //5 questions by default in the subject
                     Random r = new Random();
                     int value = minValue + r.nextInt(maxValue - minValue);
                     if(!questionsNumber.contains(value)){
@@ -100,6 +103,7 @@ public class PreparationQuizActivity extends AppCompatActivity {
         Intent intent3 = new Intent(this, DoingQuizActivity.class);
         intent3.putExtra("key", key);
         intent3.putExtra("quiz", quiz);
+        intent3.putExtra("user", user);
         intent3.putIntegerArrayListExtra("random", questionsNumber);
         startActivity(intent3);
     }
@@ -131,7 +135,7 @@ public class PreparationQuizActivity extends AppCompatActivity {
                            }
 
                            @Override
-                           public void UserIsLoaded(List<User> users, List<String> keys) {
+                           public void UsersIsLoaded(List<User> users, List<String> keys) {
 
                            }
 

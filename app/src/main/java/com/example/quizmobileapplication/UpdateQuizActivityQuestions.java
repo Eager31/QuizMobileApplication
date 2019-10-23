@@ -46,7 +46,7 @@ public class UpdateQuizActivityQuestions extends AppCompatActivity {
         mQuestionTitle_editTxt = findViewById(R.id.questionTitleM_editTxt);
         mSolutionA_editTxt = findViewById(R.id.solutionAM_editTxt);
         mSolutionB_editTxt = findViewById(R.id.solutionBM_editTxt);
-        mSolutionC_editTxt =  findViewById(R.id.solutionCM_editTxt);
+        mSolutionC_editTxt = findViewById(R.id.solutionCM_editTxt);
         mSolutionD_editTxt = findViewById(R.id.solutionDM_editTxt);
         mRightAnswer_spinner = findViewById(R.id.rightAnswerD_spinner);
         back_btn = findViewById(R.id.back_btn);
@@ -70,7 +70,7 @@ public class UpdateQuizActivityQuestions extends AppCompatActivity {
         mSolutionB_editTxt.setText(question.getOption2());
         mSolutionC_editTxt.setText(question.getOption3());
         mSolutionD_editTxt.setText(question.getOption4());
-        mRightAnswer_spinner.setSelection(question.getCorrectAnswer()-1);
+        mRightAnswer_spinner.setSelection(question.getCorrectAnswer() - 1);
         //intNbQuestionRemaining--; //Reduce by one the number of execution
 
         next_btn.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +82,7 @@ public class UpdateQuizActivityQuestions extends AppCompatActivity {
                 question.setOption2(mSolutionB_editTxt.getText().toString());
                 question.setOption3(mSolutionC_editTxt.getText().toString());
                 question.setOption4(mSolutionD_editTxt.getText().toString());
-                switch(mRightAnswer_spinner.getSelectedItem().toString()) {
+                switch (mRightAnswer_spinner.getSelectedItem().toString()) {
                     case "Answer A":
                         question.setCorrectAnswer(1);
                         break;
@@ -97,10 +97,10 @@ public class UpdateQuizActivityQuestions extends AppCompatActivity {
                         break;
                 }
 
-                quiz.getQuestionsLists().set(actualQuestionNb-1, question); //modify the actual question by the new one
-                Log.i("QST", quiz.getQuestionsLists().get(actualQuestionNb-1).getQuestion());
+                quiz.getQuestionsLists().set(actualQuestionNb - 1, question); //modify the actual question by the new one
+                Log.i("QST", quiz.getQuestionsLists().get(actualQuestionNb - 1).getQuestion());
                 intNbQuestionRemaining--; //Reduce by one the number of execution
-                if(intNbQuestionRemaining > 0) { //If it still questions to answer
+                if (intNbQuestionRemaining > 0) { //If it still questions to answer
                     reInit();
                 } else { //End modification - Calling back display of the MainActivity
                     sendAndStop();
@@ -119,10 +119,10 @@ public class UpdateQuizActivityQuestions extends AppCompatActivity {
         });
     }
 
-    public void reInit(){
+    public void reInit() {
         //Reloading this part with new values
         actualQuestionNb++;
-        question = quiz.getQuestionsLists().get(actualQuestionNb-1);
+        question = quiz.getQuestionsLists().get(actualQuestionNb - 1);
         String string = "Question n°" + question.getQuestionNumber();
         mExplanation_textView.setText(string);
         mQuestionTitle_editTxt.setText(question.getQuestion());
@@ -130,10 +130,11 @@ public class UpdateQuizActivityQuestions extends AppCompatActivity {
         mSolutionB_editTxt.setText(question.getOption2());
         mSolutionC_editTxt.setText(question.getOption3());
         mSolutionD_editTxt.setText(question.getOption4());
-        mRightAnswer_spinner.setSelection(question.getCorrectAnswer()-1);
+        mRightAnswer_spinner.setSelection(question.getCorrectAnswer() - 1);
 
     }
-    public void sendAndStop(){
+
+    public void sendAndStop() {
         new FireBaseDatabaseHelper().updateQuiz(key, quiz, new FireBaseDatabaseHelper.DataStatus() {
             @Override
             public void QuizIsLoaded(List<Quiz> quizzes, List<String> keys) {
@@ -146,7 +147,7 @@ public class UpdateQuizActivityQuestions extends AppCompatActivity {
             }
 
             @Override
-            public void UserIsLoaded(List<User> users, List<String> keys) {
+            public void UsersIsLoaded(List<User> users, List<String> keys) {
 
             }
 
@@ -157,7 +158,7 @@ public class UpdateQuizActivityQuestions extends AppCompatActivity {
 
             @Override
             public void DataIsUpdated() {
-                Toast.makeText(UpdateQuizActivityQuestions.this, "The quiz has been updated"+
+                Toast.makeText(UpdateQuizActivityQuestions.this, "The quiz has been updated" +
                         " successfully", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(UpdateQuizActivityQuestions.this, MainActivity.class));
 
